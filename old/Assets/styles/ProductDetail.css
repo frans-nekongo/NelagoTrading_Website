@@ -236,3 +236,6 @@ body{
 	position: relative;
 	bottom: 5px;
 }
+.col-md-3{
+	size: 2vw;
+}
