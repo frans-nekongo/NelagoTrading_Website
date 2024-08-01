@@ -1,7 +1,9 @@
-'use client'
+'use client';
 
 import {GoogleMap, Marker, DistanceMatrixService, StandaloneSearchBox} from "@react-google-maps/api";
-import {useState, useCallback, useEffect} from 'react';
+import React, {useState, useCallback, useEffect} from 'react';
+import {Button, ButtonGroup, Card, CardBody, Input} from "@nextui-org/react";
+import {Radio, RadioGroup} from "@nextui-org/radio";
 
 // Define the Marker position type
 interface MarkerPosition {
@@ -19,8 +21,8 @@ export const defaultMapContainerStyle = {
 const defaultMapCenter = {
     lat: -22.530857,
     lng: 17.039013
-}
-const defaultMapZoom = 18
+};
+const defaultMapZoom = 17;
 
 const defaultMapOptions: google.maps.MapOptions = {
     zoomControl: true,
@@ -75,12 +77,16 @@ export const Map = () => {
                     if (markers.length < 2) {
                         setMarkers([...markers, newMarker]);
                     }
+                    // Center the map on the new place
+                    if (map) {
+                        map.panTo(place.geometry.location);
+                    }
                 } else {
                     console.error('Place does not have geometry or location.');
                 }
             }
         }
-    }, [searchBox, markers]);
+    }, [searchBox, markers, map]);
 
     const calculateDistance = useCallback(() => {
         if (markers.length === 2) {
@@ -104,6 +110,8 @@ export const Map = () => {
         }
     }, [markers]);
 
+    const [selected, setSelected] = React.useState("london");
+
     useEffect(() => {
         if (map) {
             map.setMapTypeId('satellite');
@@ -121,46 +129,77 @@ export const Map = () => {
         }
     }, [map]);
 
+    const clearMarkers = () => {
+        setMarkers([]);
+        setDistance(null);
+    };
+
     return (
-        <div className="relative w-3/6 max-h-fit">
-            <div>
-                <p>ff</p>
-               {distance && <div>Distance: {distance}</div>}
-            </div>
-            <GoogleMap
-                mapContainerStyle={defaultMapContainerStyle}
-                center={defaultMapCenter}
-                zoom={defaultMapZoom}
-                options={defaultMapOptions}
-                onClick={onMapClick}
-                onLoad={onMapLoad}
-            >
-                {markers.map((position, idx) => (
-                    <Marker key={idx} position={position}/>
-                ))}
-                {markers.length === 2 && (
-                    <DistanceMatrixService
-                        options={{
-                            origins: [markers[0]],
-                            destinations: [markers[1]],
-                            travelMode: google.maps.TravelMode.DRIVING
-                        }}
-                        callback={(response, status) => {
-                            if (status === 'OK' && response) {
-                                const distanceText = response.rows[0].elements[0].distance.text;
-                                setDistance(distanceText);
-                            }
-                        }}
-                    />
-                )}
-            </GoogleMap>
+        <div className="flex flex-col gap-4 w-3/6 max-h-fit">
+            <div className="flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4 ">
+                <RadioGroup
+                    label="Local/ Cross Border"
+                    value={selected}
+                    onValueChange={setSelected}
+                    orientation={"horizontal"}
+                >
+                    <Radio value="local">local</Radio>
+                    <Radio value="Cross Border">Cross Border</Radio>
+                </RadioGroup>
 
-            <div style={{position: 'absolute', top: '10px', left: '10px', zIndex: 1}}>
+                <Card
+                    className="text-black w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <CardBody>
+                        <p>
+                            Distance: {distance}
+                            <br/>
+                            Selected: {selected}
+                        </p>
+                    </CardBody>
+                </Card>
+            </div>
+
+            <div className="flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4 ">
                 <StandaloneSearchBox onLoad={onSearchBoxLoad} onPlacesChanged={onPlacesChanged}>
-                    <input type="text" placeholder="Search places..." style={{width: '300px', padding: '5px'}}/>
+                    <input type="text"
+                           placeholder="Search places..."
+                           className="text-black w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"/>
                 </StandaloneSearchBox>
+                <button onClick={clearMarkers}
+                        className="p-2 bg-red-500 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    Clear Markers
+                </button>
             </div>
 
+            <div className="">
+                <GoogleMap
+                    mapContainerStyle={defaultMapContainerStyle}
+                    center={defaultMapCenter}
+                    zoom={defaultMapZoom}
+                    options={defaultMapOptions}
+                    onClick={onMapClick}
+                    onLoad={onMapLoad}
+                >
+                    {markers.map((position, idx) => (
+                        <Marker key={idx} position={position}/>
+                    ))}
+                    {markers.length === 2 && (
+                        <DistanceMatrixService
+                            options={{
+                                origins: [markers[0]],
+                                destinations: [markers[1]],
+                                travelMode: google.maps.TravelMode.DRIVING
+                            }}
+                            callback={(response, status) => {
+                                if (status === 'OK' && response) {
+                                    const distanceText = response.rows[0].elements[0].distance.text;
+                                    setDistance(distanceText);
+                                }
+                            }}
+                        />
+                    )}
+                </GoogleMap>
+            </div>
         </div>
     );
 };
