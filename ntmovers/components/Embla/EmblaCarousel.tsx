@@ -10,7 +10,7 @@ import Autoplay from 'embla-carousel-autoplay'
 import useEmblaCarousel from 'embla-carousel-react'
 
 type PropType = {
-  slides: number[]
+  slides: string[]
   options?: EmblaOptionsType
 }
 
@@ -38,24 +38,20 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   } = usePrevNextButtons(emblaApi, onNavButtonClick)
 
   return (
-    <section className="embla">
-      <div className="embla__viewport" ref={emblaRef}>
+    <section className="embla md:w-2/3">
+      <div className="embla__viewport rounded-b-large" ref={emblaRef}>
         <div className="embla__container">
-          {slides.map((index) => (
+          {slides.map((url, index) => (
             <div className="embla__slide" key={index}>
-              <div className="embla__slide__number">
-                {index + 1}
-                <img
-                    className="embla__slide__img"
-                    src={`https://picsum.photos/600/350?v=${index}`}
-                    alt="Your alt text"
-                />
-              </div>
+              <img
+                className="embla__slide__img"
+                src={url}
+                alt={`Slide ${index + 1}`}
+              />
             </div>
           ))}
         </div>
       </div>
-
       {/*<div className="embla__controls">*/}
       {/*  <div className="embla__buttons">*/}
       {/*    <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />*/}

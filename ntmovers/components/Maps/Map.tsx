@@ -16,13 +16,13 @@ const defaultMapCenter = {
     lat: -22.530857,
     lng: 17.039013
 };
-const defaultMapZoom = 17;
+const defaultMapZoom = 7;
 
 const defaultMapOptions: google.maps.MapOptions = {
     zoomControl: true,
     tilt: 0,
     gestureHandling: 'auto',
-    mapTypeId: 'satellite',
+    mapTypeId: 'roadmap',
     styles: [
         {
             featureType: 'all',
@@ -32,7 +32,7 @@ const defaultMapOptions: google.maps.MapOptions = {
             ]
         }
     ],
-    mapTypeControl: false,
+    mapTypeControl: true,
     fullscreenControl: false
 };
 
@@ -139,7 +139,7 @@ export const Map = () => {
 
     useEffect(() => {
         if (map) {
-            map.setMapTypeId('satellite');
+            map.setMapTypeId('roadmap');
             map.setOptions({
                 styles: [
                     {
@@ -161,7 +161,10 @@ export const Map = () => {
     };
 
     return (
-        <div className="flex flex-col gap-4 w-full max-h-fit">
+        <div className="items-center flex flex-col gap-4 w-full max-h-fit">
+
+            <h2 className="font-bold text-4xl mb-4">Pricing</h2>
+
             <div className="flex justify-center w-full">
                 <div className="max-w-fit max-h-fit">
                     <div className="flex flex-col row-end-2 w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4">
@@ -217,7 +220,7 @@ export const Map = () => {
                         <div className="flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4">
                             <StandaloneSearchBox onLoad={onSearchBoxLoad} onPlacesChanged={onPlacesChanged}>
                                 <input type="text"
-                                       placeholder="Search places..."
+                                       placeholder="search place..."
                                        className="text-black p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"/>
                             </StandaloneSearchBox>
                             <button onClick={clearMarkers}

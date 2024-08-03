@@ -5,14 +5,14 @@ import {EmblaOptionsType} from "embla-carousel";
 import EmblaCarousel from "@/components/Embla/EmblaCarousel";
 
 export default function Header() {
-    const OPTIONS: EmblaOptionsType = {loop: true}
-    const SLIDE_COUNT = 2
-    const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
-
+     const imageUrls = [
+    'https://vrqkpbknrgocvvpnaios.supabase.co/storage/v1/object/public/posters/1.png?t=2024-08-03T12%3A09%3A30.390Z', // Replace with your image URL
+    'https://vrqkpbknrgocvvpnaios.supabase.co/storage/v1/object/public/posters/2.png?t=2024-08-03T12%3A09%3A41.889Z'  // Replace with your image URL
+  ]
     let figma = "https://www.canva.com/design/DAGI_DhBwNY/6XYdCILEdeO55zZMg1KbLQ/view";
     return (
-        <div className="w-full h-full">
-            <EmblaCarousel slides={SLIDES} options={OPTIONS}/>
+        <div className="">
+            <EmblaCarousel slides={imageUrls}/>
         </div>
     )
         ;

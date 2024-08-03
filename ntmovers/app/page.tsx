@@ -10,6 +10,8 @@ import {Cards} from "@/components/NextUI/Cards";
 import {Divider} from "@nextui-org/react";
 import React from "react";
 import {Map} from "@/components/Maps/Map";
+import {ServiceCard} from "@/components/1.UI/ServiceCard";
+import {Spacer} from "@nextui-org/spacer";
 
 export default async function Index() {
     const canInitSupabaseClient = () => {
@@ -26,47 +28,47 @@ export default async function Index() {
     const isSupabaseConnected = canInitSupabaseClient();
 
     return (
-        <div className=" min-h-screen w-full flex flex-col gap-20 items-center">
-            <nav className=" w-full justify-center border-b border-b-foreground/10 h-16">
-                {/*<div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm">*/}
-                {/*  <DeployButton />*/}
-                {/*  {isSupabaseConnected && <AuthButton />}*/}
-                {/*</div>*/}
+        <div className="min-h-screen w-full flex flex-col items-center">
+            <nav className="w-full justify-center border-b border-b-foreground/10 h-fit">
                 <NavbarF/>
             </nav>
 
-            <div>
+            <div key="Carousel">
                 <Header/>
             </div>
 
             <Divider/>
-            <div className="w-full  flex flex-col gap-1  px-3 grid-flow-col">
-                <main className=" flex flex-col gap-1 justify-center items-center">
-                    <h2 className="font-bold text-4xl mb-4">About Us</h2>
-                    <h3>Well trusted company blah blah blah good service customer first Oriented Movers for all your
-                        needs</h3>
-                </main>
-            </div>
+            <Spacer y={16}/>
 
-            <Divider />
-            <div className="w-full  flex flex-col gap-1  px-3 grid-flow-col">
-                <main className=" flex flex-col gap-1 justify-center items-center">
-                    <h2 className="font-bold text-4xl mb-4">Our Services</h2>
-                    {/*{isSupabaseConnected ? <SignUpUserSteps /> :*/}
-                    {/*    <ConnectSupabaseSteps />}*/}
-                    <Cards/>
+            <div key="About Us" className="w-full flex flex-col gap-1 px-3 grid-flow-col">
+                <main className="flex flex-col gap-1 justify-center items-center">
+                    <h2 className="font-bold text-4xl mb-4">About Us</h2>
+                    <h3>
+                        Well trusted company blah blah blah good service customer first Oriented Movers for all your
+                        needs
+                    </h3>
                 </main>
             </div>
 
             <Divider/>
-            <Map/>
+            <Spacer y={16}/>
 
-            <footer
-                className="flex-1 w-full border-t border-t-foreground/10 p-8 flex justify-center text-center text-xs">
-                <p>
-                    Subsidiary of Nelago trading CC 2024
-                </p>
+            <div key="Our Services" className="w-full flex flex-col gap-1 px-3 grid-flow-col">
+                <main className="flex flex-col gap-1 justify-center items-center">
+                    <h2 className="font-bold text-4xl mb-4">Our Services</h2>
+                    <ServiceCard/>
+                </main>
+            </div>
+
+            <Divider/>
+            <Spacer y={16}/>
+
+            <Map key="Map"/>
+
+            <footer className="w-full border-t border-t-foreground/10 p-8 flex justify-center text-center text-xs">
+                <p>Subsidiary of Nelago trading CC 2024</p>
             </footer>
         </div>
+
     );
 }
