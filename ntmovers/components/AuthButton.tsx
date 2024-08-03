@@ -31,7 +31,12 @@ export default async function AuthButton() {
       href="/login"
       className="py-2 px-3 flex rounded-md no-underline bg-btn-background hover:bg-btn-background-hover"
     >
-      Login
+      <img
+          src={"https://vrqkpbknrgocvvpnaios.supabase.co/storage/v1/object/public/Logos/admin-user-web-svgrepo-com.svg?t=2024-08-03T21%3A30%3A13.847Z"}
+          alt={""}
+          height="20"
+          width="20"
+      />
     </Link>
   );
 }

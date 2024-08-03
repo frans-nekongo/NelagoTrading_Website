@@ -4,6 +4,7 @@ import {GoogleMap, Marker, DistanceMatrixService, StandaloneSearchBox} from "@re
 import React, {useState, useCallback, useEffect} from 'react';
 import {Button, Card, CardBody} from "@nextui-org/react";
 import {Radio, RadioGroup} from "@nextui-org/radio";
+import {Spacer} from "@nextui-org/spacer";
 
 // Define the Marker position type
 interface MarkerPosition {
@@ -161,7 +162,9 @@ export const Map = () => {
     };
 
     return (
-        <div className="items-center flex flex-col gap-4 w-full max-h-fit">
+        <div className="items-center flex flex-col gap-4 w-full max-h-fit bg-[#7CA329]">
+                        <Spacer y={16}/>
+
 
             <h2 className="font-bold text-4xl mb-4">Pricing</h2>
 
@@ -182,7 +185,7 @@ export const Map = () => {
                             </RadioGroup>
 
                             <div className="flex w-full md:w-auto flex-1 justify-between gap-2">
-                                {["Small", "Medium", "Large", "Extra Large"].map((size) => (
+                                {["S", "M", "L", "XL"].map((size) => (
                                     <Button
                                         key={size}
                                         isIconOnly

@@ -4,9 +4,10 @@ import { CardBody, CardHeader, Image, Card, Divider } from "@nextui-org/react";
 interface ServiceCardProps {
     serviceName: string;
     serviceInfo: string;
+    servicePic:string;
 }
 
-export const Cards: React.FC<ServiceCardProps> = ({ serviceName, serviceInfo }) => {
+export const Cards: React.FC<ServiceCardProps> = ({ serviceName, serviceInfo, servicePic }) => {
     return (
         <Card className="max-w-[400px] lg:w-1/5">
             <CardHeader className="flex gap-3">
@@ -14,7 +15,7 @@ export const Cards: React.FC<ServiceCardProps> = ({ serviceName, serviceInfo }) 
                     alt="service logo"
                     height={40}
                     radius="sm"
-                    src="https://avatars.githubusercontent.com/u/86160567?s=200&v=4"
+                    src={servicePic}
                     width={40}
                 />
                 <div className="flex flex-col">

@@ -29,43 +29,46 @@ export default async function Index() {
 
     return (
         <div className="min-h-screen w-full flex flex-col items-center">
-            <nav className="w-full justify-center border-b border-b-foreground/10 h-fit">
+            <nav className=" w-full justify-center border-b border-b-foreground/10 h-fit">
                 <NavbarF/>
             </nav>
 
-            <div key="Carousel">
+            <div key="Carousel" className="bg-[#7CA329]">
                 <Header/>
             </div>
 
-            <Divider/>
-            <Spacer y={16}/>
+            {/*<Divider/>*/}
 
-            <div key="About Us" className="w-full flex flex-col gap-1 px-3 grid-flow-col">
-                <main className="flex flex-col gap-1 justify-center items-center">
+            <div key="About Us" className="bg-[#7CA329] w-full flex flex-col gap-1 px-3 grid-flow-col">
+                <Spacer y={16}/>
+                <main className="flex flex-col gap-1 place-content-center items-center text-center">
                     <h2 className="font-bold text-4xl mb-4">About Us</h2>
                     <h3>
                         Well trusted company blah blah blah good service customer first Oriented Movers for all your
                         needs
                     </h3>
                 </main>
+                <Spacer y={16}/>
             </div>
 
-            <Divider/>
-            <Spacer y={16}/>
+            <div key="Our Services" className="bg-[#7CA329] w-full flex flex-col gap-1 px-3 grid-flow-col">
+                <div className="rounded-b-large bg-[#357266]">
 
-            <div key="Our Services" className="w-full flex flex-col gap-1 px-3 grid-flow-col">
-                <main className="flex flex-col gap-1 justify-center items-center">
-                    <h2 className="font-bold text-4xl mb-4">Our Services</h2>
-                    <ServiceCard/>
-                </main>
+                    <Spacer y={16}/>
+
+                    <main className="flex flex-col gap-1 justify-center items-center">
+                        <h2 className="font-bold text-4xl mb-4">Our Services</h2>
+                        <ServiceCard/>
+                    </main>
+                    <Spacer y={16}/>
+
+                </div>
+
             </div>
-
-            <Divider/>
-            <Spacer y={16}/>
 
             <Map key="Map"/>
 
-            <footer className="w-full border-t border-t-foreground/10 p-8 flex justify-center text-center text-xs">
+            <footer className="w-full border-t border-t-foreground/10 p-1 flex justify-center text-center text-2xl">
                 <p>Subsidiary of Nelago trading CC 2024</p>
             </footer>
         </div>

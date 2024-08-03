@@ -22,9 +22,9 @@ export function NavbarF() {
         <Navbar maxWidth={"full"}  className="">
             <NavbarBrand>
                 <img src={url_img} alt={""}
-                     height="36"  width="36"
+                     height="50"  width="50"
                 />
-                <p className="font-bold text-inherit">NT MOVERS</p>
+                <p className="font-bold text-inherit text-2xl">MOVERS</p>
             </NavbarBrand>
             <NavbarContent className="hidden sm:flex gap-4" justify="center">
                 <NavbarItem>

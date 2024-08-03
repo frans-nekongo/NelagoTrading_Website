@@ -3,9 +3,18 @@ import {Card} from "@nextui-org/react";
 
 export function ServiceCard() {
     return (
-        <div className="  items-center flex flex-col row-end-2 w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4">
-            <Cards serviceName="Local Movers" serviceInfo="from Local City to local City."/>
-            <Cards serviceName="Cross Border Movers" serviceInfo="from Country to Country."/>
+        <div className=" place-content-center flex flex-col w-full flex-wrap mb-6 gap-4 md:flex-row md:flex-nowrap md:mb-0">
+            <Cards
+                serviceName="Local Movers"
+                serviceInfo="from Local City to local City."
+                servicePic="https://vrqkpbknrgocvvpnaios.supabase.co/storage/v1/object/public/Logos/city-buildings-svgrepo-com.svg?t=2024-08-03T21%3A04%3A43.444Z"
+            />
+            <Cards
+                serviceName="Cross Border Movers"
+                serviceInfo="from Country to Country."
+                servicePic="https://vrqkpbknrgocvvpnaios.supabase.co/storage/v1/object/public/Logos/australia-svgrepo-com.svg?t=2024-08-03T21%3A04%3A23.734Z"
+            />
         </div>
+
     );
 }
