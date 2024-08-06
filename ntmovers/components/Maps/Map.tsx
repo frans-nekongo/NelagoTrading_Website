@@ -1,10 +1,10 @@
 'use client';
 
-import {GoogleMap, Marker, DistanceMatrixService, StandaloneSearchBox} from "@react-google-maps/api";
-import React, {useState, useCallback, useEffect} from 'react';
-import {Button, Card, CardBody} from "@nextui-org/react";
-import {Radio, RadioGroup} from "@nextui-org/radio";
-import {Spacer} from "@nextui-org/spacer";
+import { GoogleMap, Marker, DistanceMatrixService, StandaloneSearchBox } from "@react-google-maps/api";
+import React, { useState, useCallback, useEffect } from 'react';
+import { Button, Card, CardBody } from "@nextui-org/react";
+import { Radio, RadioGroup } from "@nextui-org/radio";
+import { Spacer } from "@nextui-org/spacer";
 
 // Define the Marker position type
 interface MarkerPosition {
@@ -29,7 +29,7 @@ const defaultMapOptions: google.maps.MapOptions = {
             featureType: 'all',
             elementType: 'labels',
             stylers: [
-                {visibility: 'on'} // Ensure labels are visible
+                { visibility: 'on' } // Ensure labels are visible
             ]
         }
     ],
@@ -51,6 +51,12 @@ const baseRates: { [key: string]: { [key: string]: number } } = {
         "Extra Large": 150.75
     }
 };
+ const sizeMap:{ [key: string]: string } = {
+                "S": "Small",
+                "M": "Medium",
+                "L": "Large",
+                "XL": "Extra Large"
+            };
 
 export const Map = () => {
     const [markers, setMarkers] = useState<MarkerPosition[]>([]);
@@ -68,7 +74,7 @@ export const Map = () => {
     const onMapClick = useCallback((e: google.maps.MapMouseEvent) => {
         if (e.latLng) {
             if (markers.length < 2) {
-                setMarkers([...markers, {lat: e.latLng.lat(), lng: e.latLng.lng()}]);
+                setMarkers([...markers, { lat: e.latLng.lat(), lng: e.latLng.lng() }]);
             }
         }
     }, [markers]);
@@ -110,6 +116,7 @@ export const Map = () => {
                 if (status === 'OK' && response) {
                     const distanceText = response.rows[0]?.elements[0]?.distance?.text;
                     if (distanceText) {
+                        console.log('Distance calculated:', distanceText);
                         setDistance(distanceText);
                     } else {
                         console.error('Distance information not available.');
@@ -123,10 +130,12 @@ export const Map = () => {
 
     const calculateEstimatedPrice = useCallback(() => {
         if (distance && selectedButton && selected) {
-            const baseRate = baseRates[selected][selectedButton];
+
+            const baseRate = baseRates[selected][sizeMap[selectedButton]];
             if (baseRate) {
                 const distanceValue = parseFloat(distance.replace(' km', ''));
                 const price = baseRate * distanceValue;
+                console.log('Estimated price calculated:', price);
                 setEstimatedPrice(price);
             } else {
                 console.error('Base rate not found for the selected service type and package size.');
@@ -147,7 +156,7 @@ export const Map = () => {
                         featureType: 'all',
                         elementType: 'labels',
                         stylers: [
-                            {visibility: 'on'}
+                            { visibility: 'on' }
                         ]
                     }
                 ]
@@ -162,23 +171,22 @@ export const Map = () => {
     };
 
     return (
-        <div className="items-center flex flex-col gap-4 w-full max-h-fit bg-[#7CA329]">
-                        <Spacer y={16}/>
+        <div className="text-black items-center flex flex-col gap-4 w-full max-h-fit bg-[#D8EFD3]">
+            <Spacer y={16} />
 
-
-            <h2 className="font-bold text-4xl mb-4">Pricing</h2>
+            <h2 className="font-bold text-4xl mb-4">Pricing Perfection</h2>
+            <p className="text-center md:w-2/3 "> Find out the average shipping rate for your items and experience pricing perfection.</p>
 
             <div className="flex justify-center w-full">
                 <div className="max-w-fit max-h-fit">
                     <div className="flex flex-col row-end-2 w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4">
-                        <div
-                            className="flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4 items-center content-stretch">
+                        <div className="flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4 items-center content-stretch">
                             <RadioGroup
                                 label=""
                                 value={selected}
                                 onValueChange={setSelected}
                                 orientation={"horizontal"}
-                                className="h-fit items-center w-full md:w-auto flex-1"
+                                className="text-black h-fit items-center w-full md:w-auto flex-1"
                             >
                                 <Radio value="Local">Local</Radio>
                                 <Radio value="Cross Border">Cross Border</Radio>
@@ -189,7 +197,7 @@ export const Map = () => {
                                     <Button
                                         key={size}
                                         isIconOnly
-                                        color="danger"
+                                        color={"default"}
                                         aria-label={size}
                                         className={selectedButton === size ? "ring-2 ring-indigo-500" : ""}
                                         onClick={() => setSelectedButton(size)}
@@ -200,22 +208,20 @@ export const Map = () => {
                             </div>
                         </div>
                         <div className="flex gap-4 items-center">
-                            <Card
-                                className="text-black w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            <Card className="text-black w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
                                 <CardBody>
                                     <p>
                                         Distance: {distance}
-                                        <br/>
-                                        Selected: {selected}
-                                        <br/>
-                                        Selected Button: {selectedButton}
-                                        <br/>
+                                        <br />
+                                        Local/Cross-Border: {selected}
+                                        <br />
+                                        Package Size: {selectedButton}
+                                        <br />
                                         From: {markers[0]?.name || 'N/A'} {/* Display location name if available */}
-                                        <br/>
+                                        <br />
                                         To: {markers[1]?.name || 'N/A'} {/* Display location name if available */}
-                                        <br/>
-                                        Estimated
-                                        Price: {estimatedPrice !== null ? `N$${estimatedPrice.toFixed(2)}` : 'N/A'}
+                                        <br />
+                                        Estimated Price: {estimatedPrice !== null ? `N$${estimatedPrice.toFixed(2)}` : 'N/A'}
                                     </p>
                                 </CardBody>
                             </Card>
@@ -223,11 +229,11 @@ export const Map = () => {
                         <div className="flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4">
                             <StandaloneSearchBox onLoad={onSearchBoxLoad} onPlacesChanged={onPlacesChanged}>
                                 <input type="text"
-                                       placeholder="search place..."
-                                       className="text-black p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"/>
+                                    placeholder="search place..."
+                                    className="text-black p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
                             </StandaloneSearchBox>
                             <button onClick={clearMarkers}
-                                    className="w-fit p-2 bg-red-500 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                className="w-fit p-2 bg-red-500 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
                                 Clear Markers
                             </button>
                         </div>
@@ -237,7 +243,7 @@ export const Map = () => {
             <div className="flex justify-center w-full">
                 <div className="w-full md:w-2/3 h-[400px] rounded-t-lg">
                     <GoogleMap
-                        mapContainerStyle={{width: '100%', height: '100%', borderRadius: '15px 15px 0 0'}}
+                        mapContainerStyle={{ width: '100%', height: '100%', borderRadius: '15px 15px 0 0' }}
                         center={defaultMapCenter}
                         zoom={defaultMapZoom}
                         options={defaultMapOptions}
@@ -245,7 +251,7 @@ export const Map = () => {
                         onLoad={onMapLoad}
                     >
                         {markers.map((position, idx) => (
-                            <Marker key={idx} position={position}/>
+                            <Marker key={idx} position={position} />
                         ))}
                         {markers.length === 2 && (
                             <DistanceMatrixService
@@ -257,6 +263,7 @@ export const Map = () => {
                                 callback={(response, status) => {
                                     if (status === 'OK' && response) {
                                         const distanceText = response.rows[0].elements[0].distance.text;
+                                        console.log('Distance from callback:', distanceText);
                                         setDistance(distanceText);
                                     }
                                 }}

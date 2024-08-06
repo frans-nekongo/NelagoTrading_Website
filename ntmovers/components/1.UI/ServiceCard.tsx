@@ -1,9 +1,10 @@
 import {Cards} from "@/components/NextUI/Cards";
-import {Card} from "@nextui-org/react";
+import {Card, CardHeader, CardBody, CardFooter, Image, Button} from "@nextui-org/react";
 
 export function ServiceCard() {
     return (
-        <div className=" place-content-center flex flex-col w-full flex-wrap mb-6 gap-4 md:flex-row md:flex-nowrap md:mb-0">
+        <div
+            className=" place-content-center flex flex-col w-full flex-wrap mb-6 gap-4 md:flex-row md:flex-nowrap md:mb-0">
             <Cards
                 serviceName="Local Movers"
                 serviceInfo="from Local City to local City."

@@ -9,8 +9,8 @@ interface ServiceCardProps {
 
 export const Cards: React.FC<ServiceCardProps> = ({ serviceName, serviceInfo, servicePic }) => {
     return (
-        <Card className="max-w-[400px] lg:w-1/5">
-            <CardHeader className="flex gap-3">
+        <Card isPressable radius={"sm"} shadow={"sm"} className="max-w-[400px]">
+            <CardHeader  className="bg-[#95C893]  flex gap-3 p-3">
                 <Image
                     alt="service logo"
                     height={40}
@@ -19,12 +19,16 @@ export const Cards: React.FC<ServiceCardProps> = ({ serviceName, serviceInfo, se
                     width={40}
                 />
                 <div className="flex flex-col">
-                    <p className="text-md text-black">{serviceName}</p>
-                    <p className="text-small text-default-500"></p>
+                    <p className="text-md text-black text-opacity-100">{serviceName}</p>
+                    <p className="text-small text-default-500 text-opacity-100"></p>
                 </div>
             </CardHeader>
+            <div className="bg-transparent">
+
+
+            </div>
             <Divider/>
-            <CardBody>
+            <CardBody className="">
                 <p className="text-black">{serviceInfo}</p>
             </CardBody>
         </Card>

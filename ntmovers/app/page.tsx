@@ -27,21 +27,25 @@ export default async function Index() {
 
     const isSupabaseConnected = canInitSupabaseClient();
 
+    const color = "80AF81"
+    let externalImageUrl = "https://i.imgur.com/1MmuArL.png";
     return (
-        <div className="min-h-screen w-full flex flex-col items-center">
-            <nav className=" w-full justify-center border-b border-b-foreground/10 h-fit">
-                <NavbarF/>
-            </nav>
 
-            <div key="Carousel" className="bg-[#7CA329]">
+        <div className="min-h-screen w-full flex flex-col items-center">
+            <div className="bg-[#D8EFD3] w-full flex flex-col items-center">
+                <nav className="bg-white md:w-2/3  w-full justify-center  h-fit">
+                    <NavbarF/>
+                </nav>
+            </div>
+            <div key="Carousel" className="bg-[#D8EFD3]">
                 <Header/>
             </div>
 
             {/*<Divider/>*/}
 
-            <div key="About Us" className="bg-[#7CA329] w-full flex flex-col gap-1 px-3 grid-flow-col">
+            <div key="About Us" className="bg-[#D8EFD3] w-full flex flex-col gap-1 px-3 grid-flow-col">
                 <Spacer y={16}/>
-                <main className="flex flex-col gap-1 place-content-center items-center text-center">
+                <main className="text-black flex flex-col gap-1 place-content-center items-center text-center">
                     <h2 className="font-bold text-4xl mb-4">About Us</h2>
                     <h3>
                         Well trusted company blah blah blah good service customer first Oriented Movers for all your
@@ -51,16 +55,26 @@ export default async function Index() {
                 <Spacer y={16}/>
             </div>
 
-            <div key="Our Services" className="bg-[#7CA329] w-full flex flex-col gap-1 px-3 grid-flow-col">
-                <div className="rounded-b-large bg-[#357266]">
+            <div key="Our Services"
+                 className="text-black
+                 {/*bg-[#D8EFD3] */}
+                 place-items-center w-full flex flex-col gap-1 px-3 grid-flow-col">
 
-                    <Spacer y={16}/>
+                <div key="our services light green container"
+                     className="w-screen md:w-2/3 rounded-t-large rounded-b-large "
+                     style={{
+                         backgroundImage: "url(" + externalImageUrl + ")",
+                         width:"",
+                         height:""
+                     }}>
 
-                    <main className="flex flex-col gap-1 justify-center items-center">
+                    <Spacer y={10}/>
+
+                    <main className=" flex flex-col gap-1 justify-center items-center">
                         <h2 className="font-bold text-4xl mb-4">Our Services</h2>
                         <ServiceCard/>
                     </main>
-                    <Spacer y={16}/>
+                    <Spacer y={10}/>
 
                 </div>
 
@@ -68,7 +82,8 @@ export default async function Index() {
 
             <Map key="Map"/>
 
-            <footer className="w-full border-t border-t-foreground/10 p-1 flex justify-center text-center text-2xl">
+            <footer
+                className="bg-[#7ABA78] w-full border-t border-t-foreground/10 p-10 flex justify-center text-center text-2xl">
                 <p>Subsidiary of Nelago trading CC 2024</p>
             </footer>
         </div>
