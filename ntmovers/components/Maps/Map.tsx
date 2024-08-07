@@ -1,6 +1,6 @@
 'use client';
 
-import { GoogleMap, Marker, DistanceMatrixService, StandaloneSearchBox } from "@react-google-maps/api";
+import {GoogleMap, DistanceMatrixService, StandaloneSearchBox, Marker} from "@react-google-maps/api";
 import React, { useState, useCallback, useEffect } from 'react';
 import { Button, Card, CardBody } from "@nextui-org/react";
 import { Radio, RadioGroup } from "@nextui-org/radio";
@@ -20,19 +20,11 @@ const defaultMapCenter = {
 const defaultMapZoom = 7;
 
 const defaultMapOptions: google.maps.MapOptions = {
+    mapId: '698509b3153e46a5',
     zoomControl: true,
     tilt: 0,
     gestureHandling: 'auto',
     mapTypeId: 'roadmap',
-    styles: [
-        {
-            featureType: 'all',
-            elementType: 'labels',
-            stylers: [
-                { visibility: 'on' } // Ensure labels are visible
-            ]
-        }
-    ],
     mapTypeControl: true,
     fullscreenControl: false
 };
@@ -51,12 +43,12 @@ const baseRates: { [key: string]: { [key: string]: number } } = {
         "Extra Large": 150.75
     }
 };
- const sizeMap:{ [key: string]: string } = {
-                "S": "Small",
-                "M": "Medium",
-                "L": "Large",
-                "XL": "Extra Large"
-            };
+const sizeMap: { [key: string]: string } = {
+    "S": "Small",
+    "M": "Medium",
+    "L": "Large",
+    "XL": "Extra Large"
+};
 
 export const Map = () => {
     const [markers, setMarkers] = useState<MarkerPosition[]>([]);
@@ -150,17 +142,17 @@ export const Map = () => {
     useEffect(() => {
         if (map) {
             map.setMapTypeId('roadmap');
-            map.setOptions({
-                styles: [
-                    {
-                        featureType: 'all',
-                        elementType: 'labels',
-                        stylers: [
-                            { visibility: 'on' }
-                        ]
-                    }
-                ]
-            });
+            // map.setOptions({
+            //     styles: [
+            //         {
+            //             featureType: 'all',
+            //             elementType: 'labels',
+            //             stylers: [
+            //                 { visibility: 'on' }
+            //             ]
+            //         }
+            //     ]
+            // });
         }
     }, [map]);
 
@@ -251,7 +243,13 @@ export const Map = () => {
                         onLoad={onMapLoad}
                     >
                         {markers.map((position, idx) => (
-                            <Marker key={idx} position={position} />
+                            <Marker
+                                key={idx}
+                                position={position}
+                                // @ts-ignore
+                                // Use AdvancedMarkerElement for new markers
+                                component={google.maps.marker.AdvancedMarkerElement}
+                            />
                         ))}
                         {markers.length === 2 && (
                             <DistanceMatrixService
