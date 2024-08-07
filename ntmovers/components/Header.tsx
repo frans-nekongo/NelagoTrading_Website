@@ -6,8 +6,8 @@ import EmblaCarousel from "@/components/Embla/EmblaCarousel";
 
 export default function Header() {
      const imageUrls = [
-    'https://vrqkpbknrgocvvpnaios.supabase.co/storage/v1/object/public/posters/1.png?t=2024-08-03T12%3A09%3A30.390Z', // Replace with your image URL
-    'https://vrqkpbknrgocvvpnaios.supabase.co/storage/v1/object/public/posters/2.png?t=2024-08-03T12%3A09%3A41.889Z'  // Replace with your image URL
+         'https://vrqkpbknrgocvvpnaios.supabase.co/storage/v1/object/public/posters/1.png?t=2024-08-07T21%3A49%3A00.276Z',
+         'https://vrqkpbknrgocvvpnaios.supabase.co/storage/v1/object/public/posters/2.png?t=2024-08-07T21%3A49%3A28.464Z'
   ]
     let figma = "https://www.canva.com/design/DAGI_DhBwNY/6XYdCILEdeO55zZMg1KbLQ/view";
     return (

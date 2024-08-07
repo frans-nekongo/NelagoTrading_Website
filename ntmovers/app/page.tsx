@@ -28,7 +28,7 @@ export default async function Index() {
     const isSupabaseConnected = canInitSupabaseClient();
 
     const color = "80AF81"
-    let externalImageUrl = "https://i.imgur.com/1MmuArL.png";
+    let externalImageUrl = "https://vrqkpbknrgocvvpnaios.supabase.co/storage/v1/object/public/posters/3.png";
     return (
 
         <div className="min-h-screen w-full flex flex-col items-center">
@@ -56,29 +56,33 @@ export default async function Index() {
             </div>
 
             <div key="Our Services"
-                 className="text-black
-                 {/*bg-[#D8EFD3] */}
-                 place-items-center w-full flex flex-col gap-1 px-3 grid-flow-col">
+                 className="text-black place-items-center w-full flex flex-col gap-1 px-3 grid-flow-col"
+                 style={{
+                     backgroundImage: `url(${externalImageUrl})`,
+                     backgroundSize: 'cover',  // Ensures the image covers the entire div
+                     backgroundPosition: 'center',  // Centers the image
+                     backgroundRepeat: 'no-repeat',  // Prevents repeating the image
+                     width: '100%',  // Full width of the parent container
+                     height: '50vh'  // Full viewport height, adjust as needed
+                 }}>
 
                 <div key="our services light green container"
                      className="w-screen md:w-2/3 rounded-t-large rounded-b-large "
-                     style={{
-                         backgroundImage: "url(" + externalImageUrl + ")",
-                         width:"",
-                         height:""
-                     }}>
+                >
 
-                    <Spacer y={10}/>
+                    <Spacer y={20}/>
 
-                    <main className=" flex flex-col gap-1 justify-center items-center">
+                    <main className="flex flex-col gap-1 justify-center items-center">
                         <h2 className="font-bold text-4xl mb-4">Our Services</h2>
+                        <Spacer y={20}/>
                         <ServiceCard/>
                     </main>
-                    <Spacer y={10}/>
+                    <Spacer y={20}/>
 
                 </div>
 
             </div>
+
 
             <Map key="Map"/>
 
