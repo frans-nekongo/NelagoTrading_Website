@@ -1,10 +1,10 @@
 'use client';
 
 import {GoogleMap, DistanceMatrixService, StandaloneSearchBox, Marker} from "@react-google-maps/api";
-import React, { useState, useCallback, useEffect } from 'react';
-import { Button, Card, CardBody } from "@nextui-org/react";
-import { Radio, RadioGroup } from "@nextui-org/radio";
-import { Spacer } from "@nextui-org/spacer";
+import React, {useState, useCallback, useEffect} from 'react';
+import {Button, Card, CardBody} from "@nextui-org/react";
+import {Radio, RadioGroup} from "@nextui-org/radio";
+import {Spacer} from "@nextui-org/spacer";
 
 // Define the Marker position type
 interface MarkerPosition {
@@ -66,7 +66,7 @@ export const Map = () => {
     const onMapClick = useCallback((e: google.maps.MapMouseEvent) => {
         if (e.latLng) {
             if (markers.length < 2) {
-                setMarkers([...markers, { lat: e.latLng.lat(), lng: e.latLng.lng() }]);
+                setMarkers([...markers, {lat: e.latLng.lat(), lng: e.latLng.lng()}]);
             }
         }
     }, [markers]);
@@ -164,56 +164,68 @@ export const Map = () => {
 
     return (
         <div className="text-black items-center flex flex-col gap-4 w-full max-h-fit bg-[#D8EFD3]">
-            <Spacer y={16} />
+            <Spacer y={16}/>
 
             <h2 className="font-bold text-4xl mb-4">Pricing Perfection</h2>
-            <p className="text-center md:w-2/3 "> Find out the average shipping rate for your items and experience pricing perfection.</p>
-
+            <p className="text-balance text-center w-fit md:w-2/3  text-3xl "> Find out the average shipping rate for
+                your items and experience
+                pricing perfection.
+            </p>
+            <p className="text-balance text-center w-fit md:w-2/3 ">
+                Enter a location in the search bar or select one directly on the map below.
+            </p>
             <div className="flex justify-center w-full">
                 <div className="max-w-fit max-h-fit">
                     <div className="flex flex-col row-end-2 w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4">
-                        <div className="flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4 items-center content-stretch">
-                            <RadioGroup
-                                label=""
-                                value={selected}
-                                onValueChange={setSelected}
-                                orientation={"horizontal"}
-                                className="text-black h-fit items-center w-full md:w-auto flex-1"
-                            >
-                                <Radio value="Local">Local</Radio>
-                                <Radio value="Cross Border">Cross Border</Radio>
-                            </RadioGroup>
+                        <div
+                            className="flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4 items-center content-stretch">
+                            {/*<RadioGroup*/}
+                            {/*    label=""*/}
+                            {/*    value={selected}*/}
+                            {/*    onValueChange={setSelected}*/}
+                            {/*    orientation={"horizontal"}*/}
+                            {/*    className="text-black h-fit items-center w-full md:w-auto flex-1"*/}
+                            {/*>*/}
+                            {/*    <Radio value="Local">Local</Radio>*/}
+                            {/*    <Radio value="Cross Border">Cross Border</Radio>*/}
+                            {/*</RadioGroup>*/}
 
                             <div className="flex w-full md:w-auto flex-1 justify-between gap-2">
                                 {["S", "M", "L", "XL"].map((size) => (
                                     <Button
                                         key={size}
                                         isIconOnly
-                                        color={"default"}
+                                        style={{
+                                            backgroundColor: selectedButton === size ? "#7ABA78" : "transparent",
+                                            color: selectedButton === size ? "#fff" : "#000"
+                                        }}
                                         aria-label={size}
-                                        className={selectedButton === size ? "ring-2 ring-indigo-500" : ""}
+                                        className={`ring-2 ${selectedButton === size ? "ring-indigo-500" : ""}`}
                                         onClick={() => setSelectedButton(size)}
                                     >
                                         {size}
                                     </Button>
                                 ))}
                             </div>
+
                         </div>
                         <div className="flex gap-4 items-center">
-                            <Card className="text-black w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            <Card
+                                className="text-black w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
                                 <CardBody>
                                     <p>
                                         Distance: {distance}
-                                        <br />
-                                        Local/Cross-Border: {selected}
-                                        <br />
+                                        <br/>
+                                        {selected}
+                                        <br/>
                                         Package Size: {selectedButton}
-                                        <br />
+                                        <br/>
                                         From: {markers[0]?.name || 'N/A'} {/* Display location name if available */}
-                                        <br />
+                                        <br/>
                                         To: {markers[1]?.name || 'N/A'} {/* Display location name if available */}
-                                        <br />
-                                        Estimated Price: {estimatedPrice !== null ? `N$${estimatedPrice.toFixed(2)}` : 'N/A'}
+                                        <br/>
+                                        Estimated
+                                        Price: {estimatedPrice !== null ? `N$${estimatedPrice.toFixed(2)}` : 'N/A'}
                                     </p>
                                 </CardBody>
                             </Card>
@@ -221,21 +233,29 @@ export const Map = () => {
                         <div className="flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4">
                             <StandaloneSearchBox onLoad={onSearchBoxLoad} onPlacesChanged={onPlacesChanged}>
                                 <input type="text"
-                                    placeholder="search place..."
-                                    className="text-black p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                                       placeholder="Type in place name  here..."
+                                       className="text-black p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"/>
                             </StandaloneSearchBox>
                             <button onClick={clearMarkers}
-                                className="w-fit p-2 bg-red-500 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                    className="w-fit p-2 bg-red-500 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
                                 Clear Markers
                             </button>
                         </div>
                     </div>
+
                 </div>
+
             </div>
+
+            <p className="text-center text-balance  md:w-2/3 text-medium text-gray-400">Disclaimer: The
+                prices provided on this website are estimates and may vary based on specific details and
+                requirements. For accurate pricing and further information, please contact us directly.
+            </p>
+
             <div className="flex justify-center w-full">
                 <div className="w-full md:w-2/3 h-[400px] rounded-t-lg">
                     <GoogleMap
-                        mapContainerStyle={{ width: '100%', height: '100%', borderRadius: '15px 15px 0 0' }}
+                        mapContainerStyle={{width: '100%', height: '100%', borderRadius: '15px 15px 0 0'}}
                         center={defaultMapCenter}
                         zoom={defaultMapZoom}
                         options={defaultMapOptions}
