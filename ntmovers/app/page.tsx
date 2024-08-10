@@ -17,7 +17,7 @@ import WhatsAppButton from "@/components/ContactUs/WhatsAppButton";
 import EmailButton from "@/components/ContactUs/EmailButton";
 import ContactButtons from "@/components/ContactUs/ContactButtons";
 import {ContactUsIcon} from "@/components/Icons/ContactUsIcon"; // Import the new component
-
+import {FooterNT} from "@/components/1.UI/FooterNT"
 export default function Index() {
     const canInitSupabaseClient = () => {
         try {
@@ -50,7 +50,6 @@ export default function Index() {
                     </PopoverTrigger>
                     <PopoverContent>
                         <div className="px-1 py-2">
-                            <div className="text-small font-bold mb-2">Contact Us</div>
                             <div className="flex gap-4 justify-center">
                                 <WhatsAppButton/>
                                 <EmailButton/>
@@ -87,7 +86,7 @@ export default function Index() {
                      className="w-full md:w-2/3 p-4 box-border rounded-t-large rounded-b-large">
                     <Spacer y={20}/>
                     <main className="flex flex-col gap-1 justify-center items-center w-full max-w-full text-center">
-                        <h2 className="text-black font-bold text-4xl mb-4 ">Our Services</h2>
+                        <h2 className="text-black font-bold text-4xl mb-4 border-4 border-b-green-900">Our Services</h2>
                         <Spacer y={20}/>
                         <ServiceCard/>
                     </main>
@@ -97,10 +96,7 @@ export default function Index() {
 
             <Map key="Map"/>
 
-            <footer
-                className="bg-[#7ABA78] w-full border-t border-t-foreground/10 p-3 flex justify-center text-center text-2xl">
-                <p>Subsidiary of Nelago trading CC 2024</p>
-            </footer>
+            <FooterNT/>
         </div>
     );
 }

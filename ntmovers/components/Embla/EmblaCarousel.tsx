@@ -42,7 +42,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
       <div className="embla__viewport rounded-b-large" ref={emblaRef}>
         <div className="embla__container">
           {slides.map((url, index) => (
-            <div className="embla__slide" key={index}>
+            <div className="embla__slide bg-white" key={index}>
               <img
                 className="embla__slide__img"
                 src={url}

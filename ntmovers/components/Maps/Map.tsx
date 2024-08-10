@@ -5,6 +5,8 @@ import React, {useState, useCallback, useEffect} from 'react';
 import {Button, Card, CardBody} from "@nextui-org/react";
 import {Radio, RadioGroup} from "@nextui-org/radio";
 import {Spacer} from "@nextui-org/spacer";
+import {Kbd} from "@nextui-org/kbd";
+import {Chip} from "@nextui-org/chip";
 
 // Define the Marker position type
 interface MarkerPosition {
@@ -92,6 +94,11 @@ export const Map = () => {
                     if (map) {
                         map.panTo(place.geometry.location);
                     }
+                    // Clear the search box after setting the marker
+                    const inputElement = document.querySelector('.searchbox-input') as HTMLInputElement;
+                    if (inputElement) {
+                        inputElement.value = '';  // Clear the input field
+                    }
                 }
             }
         }
@@ -122,10 +129,10 @@ export const Map = () => {
 
     const calculateEstimatedPrice = useCallback(() => {
         if (distance && selectedButton && selected) {
-
             const baseRate = baseRates[selected][sizeMap[selectedButton]];
             if (baseRate) {
-                const distanceValue = parseFloat(distance.replace(' km', ''));
+                // Remove commas from the distance string
+                const distanceValue = parseFloat(distance.replace(/,/g, '').replace(' km', ''));
                 const price = baseRate * distanceValue;
                 console.log('Estimated price calculated:', price);
                 setEstimatedPrice(price);
@@ -167,31 +174,29 @@ export const Map = () => {
             <Spacer y={16}/>
 
             <h2 className="font-bold text-4xl mb-4">Pricing Perfection</h2>
-            <p className="text-balance text-center w-fit md:w-2/3  text-3xl "> Find out the average shipping rate for
-                your items and experience
-                pricing perfection.
+            <p className="text-balance text-center w-fit md:w-2/3 text-3xl">
+                Find out the average shipping rate for your items and experience pricing perfection     .
+
+                <span className="text-base text-gray-400 md:text-3xl md:text-black">
+        Enter a location in the search bar or select one directly on the map below.
+    </span>
             </p>
-            <p className="text-balance text-center w-fit md:w-2/3 ">
-                Enter a location in the search bar or select one directly on the map below.
-            </p>
+
+            {/*<p className="text-medium text-balance text-center w-fit md:w-2/3 ">*/}
+            {/*    Enter a location in the search bar or select one directly on the map below.*/}
+            {/*</p>*/}
+            <Spacer y={5}/>
             <div className="flex justify-center w-full">
                 <div className="max-w-fit max-h-fit">
-                    <div className="flex flex-col row-end-2 w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4">
-                        <div
-                            className="flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4 items-center content-stretch">
-                            {/*<RadioGroup*/}
-                            {/*    label=""*/}
-                            {/*    value={selected}*/}
-                            {/*    onValueChange={setSelected}*/}
-                            {/*    orientation={"horizontal"}*/}
-                            {/*    className="text-black h-fit items-center w-full md:w-auto flex-1"*/}
-                            {/*>*/}
-                            {/*    <Radio value="Local">Local</Radio>*/}
-                            {/*    <Radio value="Cross Border">Cross Border</Radio>*/}
-                            {/*</RadioGroup>*/}
-
-                            <div className="flex w-full md:w-auto flex-1 justify-between gap-2">
-                                {["S", "M", "L", "XL"].map((size) => (
+                    <div className="flex flex-col row-end-2 w-full flex-wrap md:flex-nowrap gap-4">
+                        <div className="flex w-full flex-wrap md:flex-nowrap gap-4 items-center">
+                            <div className="place-items-center flex w-full md:w-auto flex-1 justify-between gap-2">
+                                <Card className="text-black">
+                                    <CardBody>
+                                        <p>Package size :</p>
+                                    </CardBody>
+                                </Card>
+                                {["L", "XL"].map((size) => (
                                     <Button
                                         key={size}
                                         isIconOnly
@@ -207,7 +212,6 @@ export const Map = () => {
                                     </Button>
                                 ))}
                             </div>
-
                         </div>
                         <div className="flex gap-4 items-center">
                             <Card
@@ -220,9 +224,9 @@ export const Map = () => {
                                         <br/>
                                         Package Size: {selectedButton}
                                         <br/>
-                                        From: {markers[0]?.name || 'N/A'} {/* Display location name if available */}
+                                        From: {markers[0]?.name || 'N/A'}
                                         <br/>
-                                        To: {markers[1]?.name || 'N/A'} {/* Display location name if available */}
+                                        To: {markers[1]?.name || 'N/A'}
                                         <br/>
                                         Estimated
                                         Price: {estimatedPrice !== null ? `N$${estimatedPrice.toFixed(2)}` : 'N/A'}
@@ -230,18 +234,24 @@ export const Map = () => {
                                 </CardBody>
                             </Card>
                         </div>
-                        <div className="flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4">
+                        <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
                             <StandaloneSearchBox onLoad={onSearchBoxLoad} onPlacesChanged={onPlacesChanged}>
-                                <input type="text"
-                                       placeholder="Type in place name  here..."
-                                       className="text-black p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"/>
+                                <input
+                                    type="text"
+                                    placeholder="Type in place name here..."
+                                    className="searchbox-input text-black p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                />
                             </StandaloneSearchBox>
-                            <button onClick={clearMarkers}
-                                    className="w-fit p-2 bg-red-500 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+
+                            <button
+                                onClick={clearMarkers}
+                                className="w-fit p-2 bg-red-500 text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            >
                                 Clear Markers
                             </button>
                         </div>
                     </div>
+
 
                 </div>
 
