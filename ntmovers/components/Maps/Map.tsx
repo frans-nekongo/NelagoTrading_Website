@@ -35,8 +35,8 @@ const baseRates: { [key: string]: { [key: string]: number } } = {
     "Local": {
         "Small": 26.80,
         "Medium": 33.50,
-        "Large": 33.50,
-        "Extra Large": 35.50
+        "Large": 25.50,
+        "Extra Large": 29.50
     },
     "Cross Border": {
         "Small": 80.40,
@@ -257,7 +257,7 @@ export const Map = () => {
 
             </div>
 
-            <p className="text-center text-balance  md:w-2/3 text-medium text-gray-400">Disclaimer: The
+            <p className="text-center text-balance  md:w-2/3 text-medium text-red-600">Disclaimer: The
                 prices provided on this website are estimates and may vary based on specific details and
                 requirements. For accurate pricing and further information, please contact us directly.
             </p>
