@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+import {Metadata} from 'next';
 
 interface PageSEOProps {
     title: string;
@@ -11,16 +11,16 @@ interface PageSEOProps {
 }
 
 export function customMetaDataGenerator({
-    title,
-    description = "NT Movers is your trusted partner for local and cross-border moves in Namibia, ensuring safe and reliable transportation of your belongings.",
-    canonicalUrl = 'https://ntmovers.frans-nekongo.com',
-    ogType = 'website',
-    keywords = [
-        "NT Movers", "moving company Windhoek", "Windhoek moving company", "Namibia moving company", "local moves", "cross-border moves", "reliable moving services", "moving company Namibia"
-    ],
-    ogImage = 'https://vrqkpbknrgocvvpnaios.supabase.co/storage/v1/object/public/Logos/NT_logo_large.png',
-    twitterCard = 'summary_large_image',
-}: PageSEOProps): Metadata {
+                                            title,
+                                            description = "NT Movers is your trusted partner for local and cross-border moves in Namibia, ensuring safe and reliable transportation of your belongings.",
+                                            canonicalUrl = 'https://ntmovers.frans-nekongo.com',
+                                            ogType = 'website',
+                                            keywords = [
+                                                "NT Movers", "moving company Windhoek", "Windhoek moving company", "Namibia moving company", "local moves", "cross-border moves", "reliable moving services", "moving company Namibia"
+                                            ],
+                                            ogImage = 'https://vrqkpbknrgocvvpnaios.supabase.co/storage/v1/object/public/Logos/NT_logo_large.png',
+                                            twitterCard = 'summary_large_image',
+                                        }: PageSEOProps): Metadata {
 
     const siteTitle = 'Namibian Moving Company';
     const fullTitle = `${title} | ${siteTitle}`;
@@ -30,8 +30,17 @@ export function customMetaDataGenerator({
         title: fullTitle,
         description,
         keywords: keywords.join(', '),
-        authors: [{ name: "Frans Nekongo", url: "https://frans-nekongo.com/" }],
-        robots: 'index, follow',
+        authors: [{name: "Frans Nekongo", url: "https://frans-nekongo.com/"}],
+        robots: {
+            index: true,
+            follow: true,
+            nocache: true,
+            googleBot: {
+                index: true,
+                follow: true,
+                noimageindex: true,
+            },
+        },
         openGraph: {
             title: fullTitle,
             description,
@@ -55,5 +64,12 @@ export function customMetaDataGenerator({
         alternates: {
             canonical: canonicalUrl,
         },
+        icons: {
+            icon: 'app/favicon.ico',
+            shortcut: 'app/NT_favicon-16x16.png',
+            apple: 'app/NT_favicon-16x16.png'
+        },
+        manifest: 'app/manifest.webmanifest'
+        ,
     };
 }

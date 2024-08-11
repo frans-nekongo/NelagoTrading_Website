@@ -1,0 +1,28 @@
+{
+  "name": "NT Movers| Namibian Movers",
+  "short_name": "NT Movers",
+  "description": "NT Movers is your trusted partner for local and cross-border moves in Namibia, ensuring safe and reliable transportation of your belongings.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#7ABA78",
+  "theme_color": "#7ABA78",
+  "icons": [
+    {
+      "src": "app/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+// ,
+//     {
+//       "src": "/icons/icon-192x192.png",
+//       "sizes": "192x192",
+//       "type": "image/png"
+//     },
+//     {
+//       "src": "/icons/icon-512x512.png",
+//       "sizes": "512x512",
+//       "type": "image/png"
+//     }
+
+  ]
+}
