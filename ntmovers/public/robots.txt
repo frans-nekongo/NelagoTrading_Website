@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://ntmovers.frans-nekongo.com
+
+# Sitemaps
+Sitemap: https://ntmovers.frans-nekongo.com/sitemap.xml
