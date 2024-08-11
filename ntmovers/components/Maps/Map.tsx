@@ -35,8 +35,8 @@ const baseRates: { [key: string]: { [key: string]: number } } = {
     "Local": {
         "Small": 26.80,
         "Medium": 33.50,
-        "Large": 40.20,
-        "Extra Large": 50.25
+        "Large": 33.50,
+        "Extra Large": 35.50
     },
     "Cross Border": {
         "Small": 80.40,
