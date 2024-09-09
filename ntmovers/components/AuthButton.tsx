@@ -32,7 +32,7 @@ export default async function AuthButton() {
       className="py-2 px-3 flex rounded-md no-underline bg-btn-background hover:bg-btn-background-hover"
     >
       <img
-          src={"https://vrqkpbknrgocvvpnaios.supabase.co/storage/v1/object/public/Logos/admin-user-web-svgrepo-com.svg?t=2024-08-03T21%3A30%3A13.847Z"}
+          src={"https://firebasestorage.googleapis.com/v0/b/ntmovers-e1717.appspot.com/o/Logos%2Fadmin-user-web-svgrepo-com.svg?alt=media&token=f6a4ffe4-e373-48fc-b831-5b7764045310"}
           alt={""}
           height="20"
           width="20"

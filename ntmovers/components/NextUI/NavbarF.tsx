@@ -25,7 +25,8 @@ export function NavbarF() {
                 <img src={url_img} alt={""}
                      height="50" width="50"
                 />
-<p key="" className="font-bold text-inherit text-4xl italic" style={{color: 'var(--fixed-black-text)'}}>MOVERS</p>
+                <p key="" className="font-bold text-inherit text-4xl italic"
+                   style={{color: 'var(--fixed-black-text)'}}>MOVERS</p>
             </NavbarBrand>
             {/*<NavbarContent className="hidden sm:flex gap-4" justify="center">*/}
             {/*    <NavbarItem>*/}
