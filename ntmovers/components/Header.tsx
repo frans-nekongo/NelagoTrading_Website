@@ -7,8 +7,8 @@ import EmblaCarousel from "@/components/Embla/EmblaCarousel";
 const OPTIONS: EmblaOptionsType = { loop: true }
 export default function Header() {
      const imageUrls = [
-         'https://vrqkpbknrgocvvpnaios.supabase.co/storage/v1/object/public/posters/NTWEB1.png?t=2024-08-11T22%3A03%3A37.499Z',//first image
-         'https://vrqkpbknrgocvvpnaios.supabase.co/storage/v1/object/public/posters/NTWEB2.png?t=2024-08-11T22%3A04%3A22.395Z'//second image
+         'https://firebasestorage.googleapis.com/v0/b/ntmovers-e1717.appspot.com/o/Posters%2FNTWEB1.png?alt=media&token=f4765dba-fb63-47f8-992b-7d244da6faef',//first image
+         'https://firebasestorage.googleapis.com/v0/b/ntmovers-e1717.appspot.com/o/Posters%2FNTWEB2.png?alt=media&token=9590ba6a-749b-45e3-b444-7ab303af9e45'//second image
   ]
     let figma = "https://www.canva.com/design/DAGI_DhBwNY/6XYdCILEdeO55zZMg1KbLQ/view";
     return (

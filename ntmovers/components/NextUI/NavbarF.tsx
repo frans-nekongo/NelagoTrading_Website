@@ -17,7 +17,8 @@ export function NavbarF() {
     };
 
     const isSupabaseConnected = canInitSupabaseClient();
-    let url_img = "https://vrqkpbknrgocvvpnaios.supabase.co/storage/v1/object/public/Logos/NT_logo_large.png?t=2024-07-26T17%3A28%3A38.616Z";
+    //nt logo
+    let url_img = "https://firebasestorage.googleapis.com/v0/b/ntmovers-e1717.appspot.com/o/Logos%2FNT_logo_large.png?alt=media&token=47f83109-552d-45d2-8b0e-eaded794301d";
     return (
         <Navbar maxWidth={"full"} className="bg-white ">
             <NavbarBrand>

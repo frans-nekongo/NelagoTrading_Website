@@ -5,8 +5,8 @@ interface ResponsiveBackgroundProps {
     children: ReactNode;
 }
 
-let imgMain="https://vrqkpbknrgocvvpnaios.supabase.co/storage/v1/object/public/Banner/truck%20banner%20horizontal.png?t=2024-08-08T17%3A58%3A31.413Z"
-let imgSmallMain="https://vrqkpbknrgocvvpnaios.supabase.co/storage/v1/object/public/Banner/truck%20banner%20vertical.png?t=2024-08-08T18%3A01%3A00.817Z"
+let imgMain="https://firebasestorage.googleapis.com/v0/b/ntmovers-e1717.appspot.com/o/Banners%2Ftruck%20banner%20horizontal.png?alt=media&token=609e99fc-578a-4797-a415-6ea9ddeec43a"
+let imgSmallMain="https://firebasestorage.googleapis.com/v0/b/ntmovers-e1717.appspot.com/o/Banners%2Ftruck%20banner%20vertical.png?alt=media&token=bde1efab-0582-4543-b080-aa4ea5d3b53d"
 const ResponsiveBackground: React.FC<ResponsiveBackgroundProps> = ({ children }) => {
     const [externalImageUrl, setExternalImageUrl] = useState(imgMain);
 

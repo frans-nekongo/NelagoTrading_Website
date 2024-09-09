@@ -8,12 +8,12 @@ export function ServiceCard() {
             <Cards
                 serviceName="Local Movers"
                 serviceInfo="from Local City to local City."
-                servicePic="https://vrqkpbknrgocvvpnaios.supabase.co/storage/v1/object/public/Logos/city-buildings-svgrepo-com.svg?t=2024-08-03T21%3A04%3A43.444Z"
+                servicePic="https://firebasestorage.googleapis.com/v0/b/ntmovers-e1717.appspot.com/o/Logos%2Fcity-buildings-svgrepo-com.svg?alt=media&token=db89702e-3ee0-47df-aeb3-25581f9a089b"
             />
             <Cards
                 serviceName="Cross Border Movers"
                 serviceInfo="from Country to Country."
-                servicePic="https://vrqkpbknrgocvvpnaios.supabase.co/storage/v1/object/public/Logos/australia-svgrepo-com.svg?t=2024-08-03T21%3A04%3A23.734Z"
+                servicePic="https://firebasestorage.googleapis.com/v0/b/ntmovers-e1717.appspot.com/o/Logos%2Faustralia-svgrepo-com.svg?alt=media&token=7a719237-afab-4f33-8b23-6ce137f8d18f"
             />
         </div>
 
